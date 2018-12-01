@@ -51,5 +51,15 @@ public class HttpURLConnectionClass {
          double coordinates[3]  = {longitude, latitude, heading} ;
          return coordinates;
     }
+    
+    public int[] getTirePressure(){
+         JSONObject fuelLevelPercent = GET("tires");
+         int rearleft = response.getJSONObject("tirepressurerearleft").getDouble("value");
+         int rearright = response.getJSONObject("tirepressurerearright").getDouble("value");
+         int frontright = response.getJSONObject("tirepressurefrontright").getDouble("value");
+         int frontleft = response.getJSONObject("tirepressurefrontleft").getDouble("value");
+         int tirespressure[4] = {rearleft, rearright, frontright, frontleft};
+         return tirespressure;
+    }
 
 }
