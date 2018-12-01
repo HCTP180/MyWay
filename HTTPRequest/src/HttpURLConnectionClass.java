@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpURLConnectionClass {
-    public JSONObject GET(String parameter) throws Exception {
+    public JSONObject GET(String parameter) {
         try {
             String url = "https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/AF795E35CFFCE82E48/" + parameter;
             String token = "39b9c134-4313-47f5-a6d3-edda592c6b18";
@@ -37,28 +37,28 @@ public class HttpURLConnectionClass {
         }
     }
     
-    public int getFuel(){
+    public int getFuel() {
          JSONObject fuelLevelPercent = GET("fuel");
-         int fuelLevel = response.getJSONObject("fuellevelpercent").getInt("value");
+         int fuelLevel = fuelLevelPercent.getJSONObject("fuellevelpercent").getInt("value");
          return fuelLevel;
     }
     
-    public double[] getLocation(){
-         JSONObject fuelLevelPercent = GET("location");
-         double longitude = response.getJSONObject("longitude").getDouble("value");
-         double latitude = response.getJSONObject("latitude").getDouble("value");
-         double heading = response.getJSONObject("heading").getDouble("value");
-         double coordinates[3]  = {longitude, latitude, heading} ;
-         return coordinates;
+    public double[] getLocation() {
+         JSONObject location = GET("location");
+         double longitude = location.getJSONObject("longitude").getDouble("value");
+         double latitude = location.getJSONObject("latitude").getDouble("value");
+         double heading = location.getJSONObject("heading").getDouble("value");
+         double coordinates[] = {longitude, latitude, heading};
+        return coordinates;
     }
     
-    public int[] getTirePressure(){
-         JSONObject fuelLevelPercent = GET("tires");
-         int rearleft = response.getJSONObject("tirepressurerearleft").getDouble("value");
-         int rearright = response.getJSONObject("tirepressurerearright").getDouble("value");
-         int frontright = response.getJSONObject("tirepressurefrontright").getDouble("value");
-         int frontleft = response.getJSONObject("tirepressurefrontleft").getDouble("value");
-         int tirespressure[4] = {rearleft, rearright, frontright, frontleft};
+    public int[] getTirePressure() {
+         JSONObject tirePressure = GET("tires");
+         int rearleft = tirePressure.getJSONObject("tirepressurerearleft").getInt("value");
+         int rearright = tirePressure.getJSONObject("tirepressurerearright").getInt("value");
+         int frontright = tirePressure.getJSONObject("tirepressurefrontright").getInt("value");
+         int frontleft = tirePressure.getJSONObject("tirepressurefrontleft").getInt("value");
+         int tirespressure[] = {rearleft, rearright, frontright, frontleft};
          return tirespressure;
     }
 
