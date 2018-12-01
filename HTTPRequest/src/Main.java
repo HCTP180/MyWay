@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         HttpURLConnectionClass http = new HttpURLConnectionClass();
         JSONObject response = http.sendGet();
-        int fuelLevel = response.getJSONObject("fuellevelpercent").getInt("value");
         System.out.println(fuelLevel);
     }
 }

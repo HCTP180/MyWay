@@ -6,9 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpURLConnectionClass {
-    public JSONObject sendGet() throws Exception {
+    public JSONObject GET(String parameter) throws Exception {
         try {
-            String url = "https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/AF795E35CFFCE82E48/fuel";
+            String url = "https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/AF795E35CFFCE82E48/" + parameter;
             String token = "39b9c134-4313-47f5-a6d3-edda592c6b18";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -35,7 +35,21 @@ public class HttpURLConnectionClass {
             System.out.println("An error has been occured.");
             return null;
         }
-
+    }
+    
+    public int getFuel(){
+         JSONObject fuelLevelPercent = GET("fuel");
+         int fuelLevel = response.getJSONObject("fuellevelpercent").getInt("value");
+         return fuelLevel;
+    }
+    
+    public double[] getLocation(){
+         JSONObject fuelLevelPercent = GET("location");
+         double longitude = response.getJSONObject("longitude").getDouble("value");
+         double latitude = response.getJSONObject("latitude").getDouble("value");
+         double heading = response.getJSONObject("heading").getDouble("value");
+         double coordinates[3]  = {longitude, latitude, heading} ;
+         return coordinates;
     }
 
 }
