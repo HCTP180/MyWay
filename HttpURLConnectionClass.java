@@ -1,9 +1,10 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import org.json.*;
 
 public class HttpURLConnectionClass {
-     public void sendGet() throws Exception {
+     public JSONObject sendGet() throws Exception {
           try {
                String url = "https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles/AF795E35CFFCE82E48/fuel";
                String token = "39b9c134-4313-47f5-a6d3-edda592c6b18";
@@ -25,13 +26,19 @@ public class HttpURLConnectionClass {
                }
                in.close();
                System.out.println(response.toString());
+               JSONObject res = new JSONObject(response);
+               return res;
           }
           catch(Exception exception) {
                System.out.println("An error has been occured.");
+               return null;
           }
+
      }
      public static void main(String[] args) throws Exception {
           HttpURLConnectionClass http = new HttpURLConnectionClass();
-		http.sendGet();
+          JSONObject response = http.sendGet();
+          String fuelLevel = response.getString("unit");
+          System.out.println(fuelLevel); 
      }
 }
