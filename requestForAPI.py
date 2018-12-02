@@ -4,7 +4,6 @@ def getFuelLevel():
     URL = "https://api.mercedes-benz.com/experimental/connectedvehicle/v1/vehicles"
     fuelURL = URL + "/" + str(carID) + "/" + "fuel"
     log = requests.get(fuelURL, headers=headers).json()
-    #print(log)
     return log["fuellevelpercent"]["value"]
 
 def getLocation():

@@ -29,7 +29,7 @@ while(True):
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
         waypoints.append(b[0])
-    if(Hungry>=3):
+    if(Hungry>=5):
         a=nearbyPlaces.findRestaurants()
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
@@ -44,9 +44,7 @@ while(True):
         Tired=0
     
     gmaps = googlemaps.Client(key="AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA") 
-    routes = gmaps.directions(origin,
-                                           destination,
-                                           waypoints=waypoints)
+    routes = gmaps.directions(origin,destination,waypoints=waypoints,optimize_waypoints=True)
     wait="BEST WAY FOR LONG WAY........\n"
     process="|********************************|\n"
     for l in wait:
@@ -61,8 +59,6 @@ while(True):
         print(routes[0]["legs"][i]["end_address"])
         if(i!=len(waypoints)):
             print(waypoints[i])
-        
-        
         print("Estimated time: "+routes[0]["legs"][i]["duration"]["text"])
         print("-----------------------------------------------")
     Hungry+=1
