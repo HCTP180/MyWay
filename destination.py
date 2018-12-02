@@ -13,8 +13,8 @@ Tired=float(input("How many hours do you drive?"))
 origin=input("Where are you?")  
 destination=input("Where do you want to go?")  #Üsküdar,İstanbul
 while(True):
-    Gas=requestForAPI.getFuelLevel()
-    
+    #Gas=requestForAPI.getFuelLevel()
+    Gas=5
     tirepressure=requestForAPI.getTirePressures()
     kmofcar=requestForAPI.getOdometer();
     waypoints=[]
@@ -22,25 +22,27 @@ while(True):
         a=nearbyPlaces.findGasStations()
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
-        waypoints.append(location)
+        waypoints.append(b[0])
+        Gas=100
     if(kmofcar%20000==0):
         a=nearbyPlaces.findServices()
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
-        waypoints.append(location)
+        waypoints.append(b[0])
     if(Hungry>=3):
         a=nearbyPlaces.findRestaurants()
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
-        waypoints.append(location)
-
+        waypoints.append(b[0])
+        
+        Hungry=0
     if(Tired>=4.30):
         a=nearbyPlaces.findSleepPlaces()
         b=list(a.keys())
         location=str(a[b[0]])[1:-1]
-        waypoints.append(location)
-        
-
+        waypoints.append(b[0])
+        Tired=0
+    
     gmaps = googlemaps.Client(key="AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA") 
     routes = gmaps.directions(origin,
                                            destination,
@@ -57,6 +59,10 @@ while(True):
     for i in range(len(waypoints)+1):
         print(routes[0]["legs"][i]["start_address"])
         print(routes[0]["legs"][i]["end_address"])
+        if(i!=len(waypoints)):
+            print(waypoints[i])
+        
+        
         print("Estimated time: "+routes[0]["legs"][i]["duration"]["text"])
         print("-----------------------------------------------")
     Hungry+=1
