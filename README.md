@@ -2,7 +2,7 @@
 
 # MyWay
 
-**MyWay** is an app that provides driving safe for long way truck and bus drivers. Focusing on the route and traffic for hours is the biggest problem for them. If drivers think about route, he/she can be distracted. Drivers should concentrate on traffic for theirselves and others safety. The best helper for their problem is **MyWay**.
+**MyWay** is an app that provides driving safe for long way truck and bus drivers. Focusing on the route and traffic for hours is the biggest problem for them. If drivers think about route, they can be distracted. Drivers should concentrate on traffic for theirselves and others safety. The best helper for their problem is **MyWay**.
 
 ### What Does Do MyWay?
 
