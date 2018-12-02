@@ -16,10 +16,10 @@ def parseJSON(JSON):
     except Exception:
         print("Can't parse JSON!")
 
-def findGasStations():
+def findGasStations(lat, lng):
     try:
         gmaps = googlemaps.Client(key='AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA')
-        gmaps2 = gmaps.places_nearby(location=(41.0612191, 28.6884175), keyword="Benzin İstasyonu", language="tr",
+        gmaps2 = gmaps.places_nearby(location=(float(lat), float(lng)), keyword="Benzin İstasyonu", language="tr",
                                      name="Benzin İstasyonu", open_now=True, rank_by="distance", type="gas_station")
         nearby_gas_stations = parseJSON(gmaps2)
 
@@ -27,30 +27,30 @@ def findGasStations():
     except Exception:
         print("Can't get gas station data from maps!")
 
-def findRestaurants():
+def findRestaurants(lat, lng):
     try:
         gmaps = googlemaps.Client(key='AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA')
-        gmaps2 = gmaps.places_nearby(location=(41.0612191, 28.6884175), keyword="Yemek", language="tr",
+        gmaps2 = gmaps.places_nearby(location=(float(lat), float(lng)), keyword="Yemek", language="tr",
                                      name="Yemek", open_now=True, rank_by="distance", type="restaurant")
         nearby_restaurants = parseJSON(gmaps2)
         return nearby_restaurants
     except Exception:
         print("Can't get restaurant data from maps!")
 
-def findServices():
+def findServices(lat, lng):
     try:
         gmaps = googlemaps.Client(key='AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA')
-        gmaps2 = gmaps.places_nearby(location=(41.0612191, 28.6884175), keyword="Tamir", language="tr",
+        gmaps2 = gmaps.places_nearby(location=(float(lat), float(lng)), keyword="Tamir", language="tr",
                                      name="Tamir", open_now=True, rank_by="distance", type="car_repair")
         nearby_services = parseJSON(gmaps2)
         return nearby_services
     except Exception:
         print("Can't get service data from maps!")
 
-def findSleepPlaces():
+def findSleepPlaces(lat, lng):
     try:
         gmaps = googlemaps.Client(key='AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA')
-        gmaps2 = gmaps.places_nearby(location=(41.0612191, 28.6884175), keyword=['Hotel', 'Otel', 'Pansiyon', 'Hostel'], language="tr",
+        gmaps2 = gmaps.places_nearby(location=(float(lat), float(lng)), keyword=['Hotel', 'Otel', 'Pansiyon', 'Hostel'], language="tr",
                                      name="Dinlenme", open_now=True, rank_by="distance", type="lodging")
         nearby_sleep_places = parseJSON(gmaps2)
         return nearby_sleep_places
