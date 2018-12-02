@@ -23,9 +23,6 @@ def findGasStations():
 
     return nearby_gas_stations
 
-<<<<<<< HEAD
-    
-=======
 
 def findRestaurants():
     gmaps = googlemaps.Client(key='AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA')
@@ -49,4 +46,4 @@ def findSleepPlaces():
                                  name="Dinlenme", open_now=True, rank_by="distance", type="lodging")
     nearby_sleep_places = parseJSON(gmaps2)
     return nearby_sleep_places
->>>>>>> 9a25b74be61e96b6c537654679123be1a960c4c6
+
