@@ -45,6 +45,7 @@ while(True):
     
     gmaps = googlemaps.Client(key="AIzaSyDjSIZfI_fviDx3h-Wo1U9qZsK8fhHrXzA") 
     routes = gmaps.directions(origin,destination,waypoints=waypoints,optimize_waypoints=True)
+    os.system("test&cls")
     wait="BEST WAY FOR LONG WAY........\n"
     process="|********************************|\n"
     for l in wait:
